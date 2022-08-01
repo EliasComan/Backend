@@ -1,0 +1,51 @@
+
+
+<img
+  class="flex shrink"
+  src="https://static.opensea.io/solana/explore-solana.png"
+  alt=""
+/>
+<div class="flex flex-col justify-center items-center">
+  <h2 class="text-5xl capitalize pt-10"> <strong> Solana NFTs  </strong></h2>
+  <h6 class="pb-16 text-xl capitalize pt-10">Explore, buy and sell popular
+    Solana NFTs on OpenSea's Solana beta, and enjoy low gas fees and fast
+    transaction speeds.</h6>
+</div>
+<hr />
+<h2 class="flex justify-center items-center text-4xl capitalize pt-10">
+  <strong>
+    Trending collections in solana..
+  </strong>
+</h2>
+<section class="grid grid-cols-4 my-5 justify-items-center p-4">
+  <% collectionsDatabase.forEach( function(collection){ %> 
+    <a href="/coleccions/:<%-collection._id  %> ">
+      <div
+        class="flex shadow hover:shadow-xl hover:shadow-[#9921e8]/20 rounded-xl border-solid m-5 border-black flex-col rounded-xl mt-6"
+      >
+        <img
+          class="h-72 rounded w-96"
+          src= "<%=collection.coverPage%>" 
+          alt="Nombre colecion"
+        />
+
+        <div class="flex flex-col p-3 justify-around items-center">
+          <img
+            class=" border-2 shadow rounded-full justify-self-center w-16"
+            src= "<%=collection.thumbnail%>" 
+            alt="Nombre collecion"
+          />
+          <h2 class="text-2xl"> <strong> <%=collection.name%> </strong></h2>
+        </div>
+
+        <div class="flex px-5 pb-2 items-center px-2">
+          <p class="text-gray-400 text-xl">
+            <%=  collection.description %> 
+          </p>
+        </div>
+
+      </div>
+    </a>
+  <% }); %> 
+
+</section>

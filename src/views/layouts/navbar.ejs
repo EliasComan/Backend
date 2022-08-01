@@ -1,0 +1,73 @@
+<nav class=" shadow shadow-[#9921e8]/10 border-gray-200 px-2 rounded py-4 px-4 pt-6 text-2xl border-[#9921e8] border-opacity-10 bg-gray-50 border-b">
+    <div class=" flex justify-between px-8 py-2  align-center">
+        <a href="./" class="flex items-center">
+            <img
+              src="https://cdn3.iconfinder.com/data/icons/lylac-ecommerce/32/Store-512.png"
+              class="mr-3 h-6 sm:h-9"
+              alt="Logo ecommerce"
+            />
+            <span
+            class="self-center text-2xl font-semibold whitespace-nowrap "
+          >E-commerce nft</span>
+        </a>
+          <ul
+          class="flex flex-col pt-2 mt-12 md:flex-row md:space-x-8 items-center md:mt-0 md:text-sm md:font-medium"
+        >
+          <li>
+            <a
+              href="/"
+              class="block py-2  text-2xl font-semibold pr-4 pl-3bg-blue-700 rounded md:bg-transparent hover:text-blue-700 md:p-0 dark:text-white"
+            >Home</a>
+          </li>
+         
+          <li>
+            <a
+              href="#"
+              class="block py-2 text-2xl font-semibold  pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            >Services</a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            ><img class ='
+            object-contain  h-5 'src="https://cdn0.iconfinder.com/data/icons/ecommercy/32/cart2_empty-22-256.png" alt=""></a>
+          </li>
+        </ul>
+        <div class="flex justify-around items-center">
+          <div class="relative">
+              <div
+                class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-500"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                ><path
+                    fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd"
+                  ></path></svg>
+              </div>
+              <input
+                type="text"
+                class="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-[#5f72be] focus:border-[#5f72be]"
+              />
+            </div>
+        <span class="ml-12">
+          <% if(user){ %> 
+          <a href='/admin' class="hover:text-[#5f72be]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </a>
+          <% }else{ %>
+            <h1><a href="/session/init" class="font-bold text-lg">Login  /  Register</a></h1>
+            <% } %>  
+
+        </span>
+          </div>
+    </div>
+
+</nav>

@@ -1,0 +1,25 @@
+<section class="w-full  mr-20 mt-10 max-h-content">
+    <div class="flex font-bold text-2xl justify-between  w-full items-center m-10">
+        <h1 class="">Collections</h1>
+      <a href="/admin/addcollection"> 
+           <button class="flex justify-around items-center p-2 bg-[#9921e8]/30 h-16 w-40  border-solid rounded shadow-lg shadow-[#9921e8]/30">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+                <span class="font-bold text-2xl "> New</span> 
+            </button>
+        </a>
+    </div>
+    <% collections.forEach( function(collection){ %> 
+        <div class=" flex flex-col text-2xl font-bold  m-10 mt-10">
+                <div href='#' class="flex flex-row justify-between items-center  p-10 shadow flex-row border-b border-solid">
+                   <a href="/coleccions/:<%-collection._id%>" class="flex justify-between w-4/5" >
+                        <img src="<%=collection.thumbnail%>" class="h-14 w-14" alt="">
+                        <h1><%=collection.name%> </h1>
+                        <h2><%=  collection.description %> </h2>
+                    </a>
+                     <button onclick= "deleteCollection(<%=collection._id%>)" class="btn hover:text-white shadow-red-600 btn-outline btn-error">Delete</button> 
+                </div>
+        </div>
+    <% }); %> 
+</section>

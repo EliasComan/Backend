@@ -23,7 +23,14 @@ function handleLogin  () {
             body:`email=${document.getElementById('email').value}&password=${document.getElementById('password').value}`
         })
         .then(response => {
-            console.log(response.json())
+           response.json().then(res => {
+                if (res.msg ==='Email o contraseña invalidos') {
+                    const div = document.getElementById('errorLogin')
+                    div.innerHTML = '<h1 class="text-2xl font-bold text-red-600">Email o contraseña invalidos</h1>'
+                }else{
+                    
+                }
+           })
         })
     } catch (error) {
         

@@ -11,21 +11,25 @@ routerUser.get('/init', (req, res) => {
 })
 
 routerUser.post('/init', async (req, res) => {
-  const data = {
+  const dataLogin = {
     email: req.body.email,
     password: req.body.password,
   }
   try {
-    const getUser = await users.getUser(data.email)
+    const getUser = await users.getUser(dataLogin.email)
 
     if (getUser) {
-      console.log(getUser)
-      const salt = await bcrypt.genSalt(10)
-      const hash = await bcrypt.hash(data.password, salt)
-      console.log('hash', hash)
-      console.log('password', getUser.password)
-      bcrypt.compare(getUser.password, hash, (err, result) => {
+      bcrypt.compare(dataLogin.password, getUser.password, (err, result) => {
         console.log(result)
+       if (result) {
+        const accestoken = Jwt.sign(data, config.privatekey.PRIVATE_KEY, {
+          expiresIn: '24h',
+        })
+        req.user = email, accestoken
+        res.json({msg:'Usuario validado', token: accestoken})
+       } else {
+         res.json({msg:'Email o contraseña invalidos'})
+      } 
       })
     } else {
     }
@@ -33,6 +37,7 @@ routerUser.post('/init', async (req, res) => {
     res.status(400).json({ msg: 'Error de conexion' })
   }
 })
+
 routerUser.get('/register', async (req, res) => {
   res.render(path.join('layouts', 'register.ejs'))
 })

@@ -11,7 +11,7 @@ function discard(){
   function deleteCollection (id){
       console.log(id)
   }
-
+/*
 function handleLogin  () {
     try {
        fetch('/session/init',{
@@ -23,7 +23,8 @@ function handleLogin  () {
             body:`email=${document.getElementById('email').value}&password=${document.getElementById('password').value}`
         })
         .then(response => {
-           response.json().then(res => {
+           // response.json().then(res =>console.log(res))
+         /*  response.json().then(res => {
                 if (res.msg ==='Email o contraseña invalidos') {
                     const div = document.getElementById('errorLogin')
                     div.innerHTML = '<h1 class="text-2xl font-bold text-red-600">Email o contraseña invalidos</h1>'
@@ -67,3 +68,4 @@ async function  handleRegister  ()  {
         
     }
 }
+*/

@@ -12,6 +12,9 @@ const session = require('express-session')
 const cors = require('cors')
 const routerUser = require('./src/controller/users/users.controller.js')
 const strategys = require('./src/middlewears/passport')
+
+
+
 /*-----------------------MIDDLEWEARS -----------------*/
 dotenv.config()
 const app = express()

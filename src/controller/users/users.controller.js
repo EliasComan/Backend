@@ -23,4 +23,20 @@ routerUser.post('/register', passport.authenticate('signup',{
   failureRedirect:'/session/register',
   
 }))
+
+
+routerUser.get('/login/facebook', passport.authenticate('facebook'))
+
+routerUser.get(
+  '/auth/facebook/callback',
+  passport.authenticate('facebook', {
+    failureRedirect: '/',
+    successRedirect: '/',
+    authType: 'reauthenticate',
+  }),
+)
+routerUser.get('/logout', (req, res) => {
+  req.session.destroy()
+  res.redirect('/')
+})
 module.exports = routerUser

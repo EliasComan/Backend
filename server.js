@@ -61,32 +61,9 @@ app.get('/', (req, res) => {
      res.render('main',{user:user, collectionsDatabase:collectionsDatabase})
     })
 })
-app.get('/data' ,( req, res ) => {
-try {
-  const data = collections.getAll()
-  data.then(data =>
-    res.send(data))
-} catch (error) {
-  console.log(error)
-}
-})
 
 
 
-app.get('/login/facebook', passport.authenticate('facebook'))
-
-app.get(
-  '/auth/facebook/callback',
-  passport.authenticate('facebook', {
-    failureRedirect: '/',
-    successRedirect: '/',
-    authType: 'reauthenticate',
-  }),
-)
-app.get('/logout', (req, res) => {
-  req.session.destroy()
-  res.redirect('/')
-})
 
 const server = app.listen((process.env.PORT) || (process.argv[2] || 8080), () => {
   console.log('Server up')

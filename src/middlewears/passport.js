@@ -16,7 +16,7 @@ passport.use('facebook',
     {
       clientID: FACEBOOK_APP_ID,
       clientSecret: FACEBOOK_SECRET_KEY,
-      callbackURL: '/auth/facebook/callback',
+      callbackURL: '/session/auth/facebook/callback',
       profileFields: ['id', 'displayName', 'photos'],
     },
     function (accessToken, refreshToken, profile, cb) {

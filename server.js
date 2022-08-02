@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
   collections.getAll().then(res  => {
   collectionsDatabase = res})
   .finally( () => {
-     res.render('main',{user:user, collectionsDatabase:collectionsDatabase})
+     res.render('main',{user:user, collectionsDatabase})
     })
 })
 

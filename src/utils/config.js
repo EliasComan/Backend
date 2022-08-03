@@ -7,12 +7,8 @@ const config = {
          PRIVATE_KEY : '1234567890!@#$%^&*()'
     },
     nodemailer:{
-            host: 'smtp.ethereal.email',
-            port: 587,
-            auth: {
-                user: 'alena88@ethereal.email',
-                pass: '231w21aNfrntCQ6Yv8'
-            }
+                user: 'comanelias5@gmail.com',
+                pass: 'puviydbskzmdxebo'
     }
 }
 module.exports = config

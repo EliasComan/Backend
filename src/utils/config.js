@@ -5,6 +5,14 @@ const config = {
     },
     privatekey:{
          PRIVATE_KEY : '1234567890!@#$%^&*()'
+    },
+    nodemailer:{
+            host: 'smtp.ethereal.email',
+            port: 587,
+            auth: {
+                user: 'alena88@ethereal.email',
+                pass: '231w21aNfrntCQ6Yv8'
+            }
     }
 }
 module.exports = config

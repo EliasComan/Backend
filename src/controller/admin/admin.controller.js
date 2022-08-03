@@ -45,7 +45,7 @@ adminController.post('/addcollection',upload.fields([{name:'collectionThumbnail'
                 description:req.body.collectionDescription, 
                 thumbnail: 'http://localhost:8080/uploads/images/'+req.files.collectionThumbnail[0]['filename'],
                 coverPage: 'http://localhost:8080/uploads/images/'+req.files.collectionCoverPage[0]['filename'],
-                products: {}
+               
                }
                collections.save(newCollection)
                 .finally( () =>{

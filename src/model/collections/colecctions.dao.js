@@ -7,7 +7,6 @@ class collectionsDao extends productsModel {
         description:{type:String, require:true},
         thumbnail:{type:String, require:true},
         coverPage:{type:String, require:true},
-        products: {type:Object, require:true}
     })
   }
   

@@ -13,9 +13,10 @@ const cors = require("cors");
 const routerUser = require("./src/controller/users/users.controller.js");
 const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
-const strategyes =  require('./src/middlewears/passport')
+ require('./src/middlewears/passport')
 const {handleSockets} = require('./src/middlewears/sockets')
 const handlebars = require('express-handlebars')
+const flash = require('connect-flash')
 
 /*-----------------------MIDDLEWEARS -----------------*/
 dotenv.config();
@@ -42,10 +43,15 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use(flash())
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
-
+app.use((req,res, next) => {
+ app.locals.singUpMessage = req.flash('singUpMessage')
+ app.locals.logInMessage = req.flash('logInMessage')
+ next()
+})
 /*----------------------ENGINE -----------------*/
 app.set("views", path.resolve(path.join("src", "views")));
 app.set("view engine", "ejs");

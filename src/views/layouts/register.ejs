@@ -38,6 +38,9 @@
     </section>
 
     <section class="mt-10">
+      <% if (singUpMessage) { %> 
+        <h1 class="font-bold text-red-700"><%= singUpMessage %> </h1>
+       <% } %>
       <form class="flex flex-col" action="/session/register" method="post" >
         <div id="errorRegister">
 

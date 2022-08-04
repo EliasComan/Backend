@@ -4,13 +4,14 @@ const routerUser = express.Router()
 const passport = require('passport')
 
 routerUser.get('/init', (req, res) => {
-  res.render(path.resolve('./src/views/layouts/sessionInit.ejs'), { error: false })
+    res.render(path.resolve('./src/views/layouts/sessionInit.ejs'))
 })
 
 
 routerUser.post('/init', passport.authenticate('login',{
   successRedirect:'/',
-  failureRedirect:'/session/init'
+  failureRedirect:'/session/init',
+  passReqToCallback:true
 }))
 
 routerUser.get('/register', async (req, res) => {
@@ -35,8 +36,8 @@ routerUser.get(
     authType: 'reauthenticate',
   }),
 )
-routerUser.get('/logout', (req, res) => {
-  req.session.destroy()
-  res.redirect('/')
+routerUser.get('/logout', (req, res, next) => {
+ req.session.destroy()
+ res.redirect('/')
 })
 module.exports = routerUser

@@ -32,8 +32,9 @@ passport.use(
     {
       usernameField: "email",
       passwordField: "password",
+      passReqToCallback:true
     },
-    async (email, password, done) => {
+    async (req,email, password, done) => {
       try {
         const getUser = await users.getUser(email);
 
@@ -47,16 +48,15 @@ passport.use(
                   expiresIn: "24h",
                 }
               );
-              return done(null, { msg: "Usuario validado", token: accestoken, email });
+              return done(null, { message: "Usuario validado", token: accestoken, email });
             } else {
-              return done(null, false, { msg: "mail o contraseña invalidos" });
+              return done(null, false, req.flash('logInMessage','Email o contraseña invalidos'));
             }
           });
         } else {
-          return done(null, false, { message: "email no encontrado" });
+          return done(null, false,req.flash( 'logInMessage',"email no encontrado" ));
         }
       } catch (error) {
-        res.status(400).json({ msg: "Error de conexion" });
       }
     }
   )
@@ -68,12 +68,13 @@ passport.use(
     {
       usernameField: "email",
       passwordField: "password",
+      passReqToCallback:true
     },
-    async (email, password, done) => {
+    async (req,email, password, done) => {
       try {
         await users.getUser(email).then(async (user) => {
           if (user) {
-            return done(null, false, { message: "Usuario ya registrado" });
+            return done(null, false, req.flash('singUpMessage', "Usuario ya registrado" ));
           } else {
             const salt = await bcrypt.genSalt(10);
             const hash = await bcrypt.hash(password, salt);

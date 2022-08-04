@@ -37,8 +37,8 @@
     </section>
 
     <section class="mt-10">
-      <% if (error) { %> 
-        <h1 class="font-bold text-red-700">Usuario o contraseña erroneos</h1>
+      <% if (logInMessage) { %> 
+        <h1 class="font-bold text-red-700"><%= logInMessage %> </h1>
        <% } %>
       <form class="flex flex-col" method="post" action="/session/init">
         <div id="errorLogin"></div>

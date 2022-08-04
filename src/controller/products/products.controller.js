@@ -3,8 +3,9 @@ const path = require( 'path')
 
 const routerproducts = express.Router()
 
-routerproducts.get('/', (req, res) => {
-  res.render(path.join('layouts', 'sessionInit'))
+routerproducts.get('/:id', (req, res) => {
+  console.log(req.params.id)
+  res.send(req.params.id)
 })
 routerproducts.post('/', (req, res) => {
   try {

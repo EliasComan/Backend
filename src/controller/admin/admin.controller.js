@@ -20,7 +20,7 @@ adminController.get('/', (req, res ) => {
     collections.getAll().then(res  => {
     collectionsDatabase = res})
     .finally( () => {
-        res.render('admin',{collections:collectionsDatabase, user:true})
+        res.render(path.resolve('./src/views/admin.ejs'),{collections:collectionsDatabase, user:true})
     })
       
   } else {
@@ -31,7 +31,7 @@ adminController.get('/', (req, res ) => {
 adminController.get('/addcollection', (req,res ) => {
     let user = false
     req.isAuthenticated() ?  user = true : user=false;
-    res.render('admin',{collections:false,addcollection:true, user:user,upload:false})
+    res.render(path.resolve('./src/views/admin.ejs'),{collections:false,addcollection:true, user:user,upload:false})
 })
 
 adminController.post('/addcollection',upload.fields([{name:'collectionThumbnail', maxCount:2}, {name:'collectionCoverPage', maxCount:2}]), (req, res, next ) => {
@@ -50,7 +50,7 @@ adminController.post('/addcollection',upload.fields([{name:'collectionThumbnail'
                collections.save(newCollection)
                 .finally( () =>{
                     upload= true;
-                   res.render('admin',{collections:false,addcollection:true, user:user,upload:upload})
+                   res.render(path.resolve('./src/views/admin.ejs'),{collections:false,addcollection:true, user:user,upload:upload})
                    
                 })
            } catch (error) {

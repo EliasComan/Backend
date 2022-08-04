@@ -47,7 +47,7 @@ passport.use(
                   expiresIn: "24h",
                 }
               );
-              return done(null, { msg: "Usuario validado", token: accestoken });
+              return done(null, { msg: "Usuario validado", token: accestoken, email });
             } else {
               return done(null, false, { msg: "mail o contraseña invalidos" });
             }
@@ -100,7 +100,7 @@ passport.use(
                     expiresIn: "24h",
                   }
                 );
-                return done(null, { message: "DONE", token: accessToken });
+                return done(null, { message: "DONE", token: accessToken, email });
               });
           }
         });

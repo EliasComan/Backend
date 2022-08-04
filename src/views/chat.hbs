@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.15.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/jpg" href="https://res.cloudinary.com/hdsqazxtw/image/upload/v1558445735/apple-icon-60x60_lzyndx.png"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Handlebars</title>
+</head>
+ <style>
+    .body-bg { background-color: #9921e8; background-image:
+    linear-gradient(315deg, #9921e8 0%, #5f72be 74%); }
+  </style>
+<body class=" body-bg flex items-center justify-center  h-screen">
+  <div class="mockup-window border bg-base-300">
+  <div class="px-4 py-16 bg-base-200">
+    <a  href ='/' class="text-primary">
+     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+    </a>
+          <div class=" m-12 w-96 h-96" id="messages">
+
+        </div>
+        <form class=" m-2 flex items-center " onsubmit=" return addMessage(this)"> 
+           <div class="form-control mx-5 w-full max-w-xs">
+                <label  class="label">
+                    <span class="label-text text-xl font-bold">Email</span>
+                </label>
+                <input type="text" placeholder="Type here" class="input input-bordered input-primary w-full max-w-xs" id="email" required />
+           </div>
+           <div class="form-control mx-5 w-full max-w-xs">
+            <label   class="form-label">
+                <label  class="label">
+                    <span class="label-text text-xl font-bold">Mensaje</span>
+                </label>
+            </label>
+            <input type="text" placeholder="Type here" class="input input-bordered input-primary w-full max-w-xs" id="mensaje" required/>
+           </div>
+            <input  class='mt-10 btn btn-active btn-secondary' value="Enviar" type="submit" >
+        </form>
+  </div>
+</div>
+</div>
+    <script>
+        const socket = io.connect();
+
+        socket.on('mensajes', async (mensajes) => {
+            const html = mensajes.map((elem, index) => {
+            return(
+                `<div style="display:flex">
+                    <strong style='color:blue'>${elem.email}</strong>
+                    <p style='color:brown'>${new Date().toLocaleString()}</p>:
+                    <em style='color:green'>${elem.msg}</em> 
+                </div>`)
+        }).join(" ");
+        document.getElementById('messages').innerHTML = html;
+
+        })
+
+        function addMessage(e) {
+        const mensaje = {
+            email: document.getElementById('email').value,
+            tipo:'consulta',
+            msg: document.getElementById('mensaje').value
+        };
+        socket.emit('new-message', mensaje);
+        return false;
+        }
+       
+    
+    </script>
+</body>
+</html>

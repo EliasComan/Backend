@@ -4,7 +4,7 @@ const routerUser = express.Router()
 const passport = require('passport')
 
 routerUser.get('/init', (req, res) => {
-  res.render(path.join('layouts', 'sessionInit'), { error: false })
+  res.render(path.resolve('./src/views/layouts/sessionInit.ejs'), { error: false })
 })
 
 
@@ -14,7 +14,7 @@ routerUser.post('/init', passport.authenticate('login',{
 }))
 
 routerUser.get('/register', async (req, res) => {
-  res.render(path.join('layouts', 'register.ejs'))
+  res.render(path.resolve('./src/views/layouts/register.ejs'))
 })
 
 

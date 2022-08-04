@@ -25,7 +25,7 @@
     <a  href ='/' class="text-primary">
      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
     </a>
-          <div class=" m-12 w-96 h-96" id="messages">
+          <div class="m-2 w-content h-96  overflow-y-scroll scroll-smooth " id="messages">
 
         </div>
         <form class=" m-2 flex items-center " onsubmit=" return addMessage(this)"> 
@@ -54,11 +54,18 @@
         socket.on('mensajes', async (mensajes) => {
             const html = mensajes.map((elem, index) => {
             return(
-                `<div style="display:flex">
-                    <strong style='color:blue'>${elem.email}</strong>
-                    <p style='color:brown'>${new Date().toLocaleString()}</p>:
-                    <em style='color:green'>${elem.msg}</em> 
-                </div>`)
+                ` 
+                <div class="form-control text-ellipsis mx-5 w-full px-4 py-2 max-w-xs bg-gray-400 border rounded-xl my-2 text-white">
+                    <label   class="form-label">
+                        <label  class="label">
+                            <span class="label-text  text-gray-900 font-semibold">${elem.email}</span>
+                            <span class="label-text-alt">${elem.updatedAt.slice(11,18)}</span>
+                        </label>
+                    </label>
+                <h1   class=" m-2 text-ellipsis w-full max-w-xs">${elem.msg}</h1>
+                </div>
+                
+                `)
         }).join(" ");
         document.getElementById('messages').innerHTML = html;
 

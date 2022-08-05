@@ -10,7 +10,7 @@ const path = require("path");
 const productsController = require("./src/controller/products/products.controller.js");
 const session = require("express-session");
 const cors = require("cors");
-const routerUser = require("./src/controller/users/users.controller.js");
+const usersController = require("./src/controller/users/users.controller.js");
 const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
  require('./src/middlewears/passport')
@@ -64,7 +64,7 @@ app.engine('.hbs', handlebars.engine({
 /*----------------------ROUTES -----------------*/
 app.use("/products", productsController);
 app.use("/admin", adminController);
-app.use("/session", routerUser);
+app.use("/session", usersController);
 
 app.get("/", (req, res) => {
   let user = false;

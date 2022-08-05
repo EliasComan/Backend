@@ -4,8 +4,7 @@ const path = require( 'path')
 const routerproducts = express.Router()
 
 routerproducts.get('/:id', (req, res) => {
-  console.log(req.params.id)
-  res.send(req.params.id)
+  res.render(path.resolve('./src/views/layouts/itemDetail.ejs'),{id:req.params.id})
 })
 routerproducts.post('/', (req, res) => {
   try {

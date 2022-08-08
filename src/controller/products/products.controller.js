@@ -1,19 +1,40 @@
-const express = require( 'express')
-const path = require( 'path')
+const express = require("express");
+const path = require("path");
+const productsModel = require("../../model/collections/colecctions.dao");
 
-const routerproducts = express.Router()
+const routerproducts = express.Router();
 
-routerproducts.get('/:id', (req, res) => {
-  res.render(path.resolve('./src/views/layouts/itemDetail.ejs'),{id:req.params.id})
-})
-routerproducts.post('/', (req, res) => {
+routerproducts.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await productsModel.getByid(id.slice(1)).then((response) => {
+      const product = response[0];
+      if (req.isAuthenticated()) {
+        res.render(path.resolve("./src/views/layouts/itemDetail.ejs"), {
+          product,
+          user: true,
+        });
+      } else {
+        res.render(path.resolve("./src/views/layouts/itemDetail.ejs"), {
+          product,
+          user: false,
+        });
+      }
+    });
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+routerproducts.post("/", (req, res) => {
   try {
     products.save(req.body).then(() => {
-      res.status(200).send({ done: true })
-    })
+      res.status(200).send({
+        done: true,
+      });
+    });
   } catch (error) {
-    res.status(500).send('Error')
+    res.status(500).send("Error");
   }
-})
+});
 
-module.exports = routerproducts
+module.exports = routerproducts;

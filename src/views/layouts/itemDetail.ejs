@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.15.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/jpg" href="https://res.cloudinary.com/hdsqazxtw/image/upload/v1558445735/apple-icon-60x60_lzyndx.png"/>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <title>E-Commerce</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.15.0/dist/full.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/jpg"
+    href="https://res.cloudinary.com/hdsqazxtw/image/upload/v1558445735/apple-icon-60x60_lzyndx.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+  <title>E-Commerce</title>
 </head>
+
 <body>
-    <% if(id){ %>
-       <h1> <%= id %>  </h1>
-       <% } %> 
-    
+  <%- include('./navbar.ejs') -%>
+  <% if(product){ %>
+  <div class="m-5  flex flex-row">
+    <div class="h-screen w-full">
+      <img class=" h-screen w-full rounded-md" src="<%=product.coverPage%>" alt="Nombre colecion" />
+    </div>
+    <div class="w-0.5 bg-gray-200 mx-5 h-auto  "></div>
+    <div class="text-center h-screen w-full">
+      <div class="flex justify-between align-center m-2">
+        <h1 class="text-6xl font-bold "> <%= product.name %> </h1>
+        <h2 class="text-3xl font-medium w-48 h-12text-center p-2 bg-yellow-100 rounded-full" >Sale</h2>
+      </div>
+      <div class="flex justify-between mt-12 mx-10">
+        <h2 class="text-3xl font-light ">$4000</h2>
+        <h2 class="text-3xl font-semibold">5/5★</h2>
+      </div>
+      <div class="mx-5 my-24">
+        <h2 class="text-3xl font-semibold flex align-start">Cantidad:</h2>
+        <input type="range" min="0" max="5" value="1" class="range" step="1" />
+        <div class="w-full flex justify-between text-xl px-2">
+          <span>0</span>
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% } %>
+  <%- include('./footer.ejs') %>
 </body>
+
 </html>

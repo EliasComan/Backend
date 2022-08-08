@@ -25,6 +25,10 @@ io.on('connection',  async socket => {
             io.sockets.emit('mensajes', mensajesDatabase) 
         })
     });
+    socket.on('disconnecting',(reason) => {
+        console.log(reason)
+        
+    })
     
    
 });

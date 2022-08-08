@@ -21,10 +21,10 @@
   <% collectionsDatabase.forEach( function(collection){ %> 
     <a href="/products/:<%-collection._id  %> ">
       <div
-        class="flex shadow hover:shadow-xl hover:shadow-[#9921e8]/20 rounded-xl border-solid m-5 border-black flex-col rounded-xl mt-6"
+        class="flex shadow hover:shadow-xl w-full hover:shadow-[#9921e8]/20 rounded-xl border-solid m-5 border-black flex-col rounded-xl mt-6"
       >
         <img
-          class="h-72 rounded w-96"
+          class="h-72 rounded w-full"
           src= "<%=collection.coverPage%>" 
           alt="Nombre colecion"
         />
@@ -38,8 +38,8 @@
           <h2 class="text-2xl"> <strong> <%=collection.name%> </strong></h2>
         </div>
 
-        <div class="flex px-5 pb-2 items-center px-2">
-          <p class="text-gray-400 text-xl">
+        <div class="flex px-5 pb-2 items-center px-2 ">
+          <p class="text-gray-400 text-xl  overflow-hidden m-5 p-2">
             <%=  collection.description %> 
           </p>
         </div>

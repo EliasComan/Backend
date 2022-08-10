@@ -17,6 +17,7 @@ const { Server: IOServer } = require("socket.io");
 const {handleSockets} = require('./src/middlewears/sockets')
 const handlebars = require('express-handlebars')
 const flash = require('connect-flash')
+const cartController = require('./src/controller/cart/cart.controller')
 
 /*-----------------------MIDDLEWEARS -----------------*/
 dotenv.config();
@@ -65,6 +66,9 @@ app.engine('.hbs', handlebars.engine({
 app.use("/products", productsController);
 app.use("/admin", adminController);
 app.use("/session", usersController);
+app.use('/cart',cartController)
+
+
 
 app.get("/", (req, res) => {
   let user = false;

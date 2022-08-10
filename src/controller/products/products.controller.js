@@ -25,6 +25,12 @@ routerproducts.get("/:id", async (req, res) => {
     res.status(400).json(error);
   }
 });
+
+routerproducts.post('/:id', async (req, res )=>  {
+  const { id} = req.params.id
+  console.log(id)
+  res.send(id)
+})
 routerproducts.post("/", (req, res) => {
   try {
     products.save(req.body).then(() => {

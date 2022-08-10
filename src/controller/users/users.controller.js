@@ -20,8 +20,9 @@ routerUser.get('/register', async (req, res) => {
 
 
 routerUser.post('/register', passport.authenticate('signup',{
-  successRedirect:'/',
+  successRedirect:'/session/init',
   failureRedirect:'/session/register',
+  passReqToCallback:true
   
 }))
 

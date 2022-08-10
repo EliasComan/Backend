@@ -7,9 +7,13 @@ mongoose.connect(config.atlas.url,{
 })
 
 const cartSchema = new mongoose.Schema({
-    name:String,
     id:String,
-    qnty:Number,
+    products:{
+        id:String,
+        name:String,
+        qnty:Number,
+        img:String
+    }
 
 },
 {
@@ -17,5 +21,5 @@ const cartSchema = new mongoose.Schema({
 }
 )
 
-module.exports =mongoose.model("cart",cartSchema)
+module.exports = mongoose.model("cart",cartSchema)
 

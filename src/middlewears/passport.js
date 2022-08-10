@@ -1,4 +1,4 @@
-const users = require("../model/users/users.dao");
+const users = require("../model/users/users.model");
 const Jwt = require("jsonwebtoken");
 const config = require("../utils/config");
 const bcrypt = require("bcryptjs");
@@ -19,7 +19,8 @@ passport.use(
       clientID: FACEBOOK_APP_ID,
       clientSecret: FACEBOOK_SECRET_KEY,
       callbackURL: "/session/auth/facebook/callback",
-      profileFields: ["id", "displayName", "photos"],
+      profileFields: ['id', 'displayName', 'photos', 'emails'],
+      enableProof:true
     },
     function (accessToken, refreshToken, profile, cb) {
       cb(null, profile);
@@ -36,7 +37,7 @@ passport.use(
     },
     async (req,email, password, done) => {
       try {
-        const getUser = await users.getUser(email);
+        const getUser = await users.findOne({email:email});
 
         if (getUser) {
           bcrypt.compare(password, getUser.password, (err, result) => {
@@ -48,7 +49,7 @@ passport.use(
                   expiresIn: "24h",
                 }
               );
-              return done(null, { message: "Usuario validado", token: accestoken, email });
+              return done(null, {  token: accestoken, email, id:getUser.id });
             } else {
               return done(null, false, req.flash('logInMessage','Email o contraseña invalidos'));
             }
@@ -72,15 +73,15 @@ passport.use(
     },
     async (req,email, password, done) => {
       try {
-        await users.getUser(email).then(async (user) => {
+        await users.findOne({email:email}).then(async (user) => {
           if (user) {
             return done(null, false, req.flash('singUpMessage', "Usuario ya registrado" ));
           } else {
             const salt = await bcrypt.genSalt(10);
             const hash = await bcrypt.hash(password, salt);
             await users
-              .registerUser({ email, password: hash })
-              .then(async () => {
+              .create({ email:email, password: hash })
+              .then(async (response) => {
                 await transporter.sendMail({
                   from: "NodeJSAPP <noreply@example.com>",
                   to: `"Dear Developer!👩‍💻👨‍💻" <${email}>`,
@@ -101,7 +102,7 @@ passport.use(
                     expiresIn: "24h",
                   }
                 );
-                return done(null, { message: "DONE", token: accessToken, email });
+                return done(null, { token: accessToken, email, id:response.id },req.flash('logInMessage',"Por favor inicia sesion" ));
               });
           }
         });

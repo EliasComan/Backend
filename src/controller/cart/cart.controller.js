@@ -32,8 +32,8 @@ cartRouter.post('/', async (req, res, next ) => {
             img: thumbnail,
             qnty:qnty
         }]})
-        .then(res => console.log(res))
-        res.json({msg:'Done'})
+        .then(() => res.json({msg:'Done'}))
+        
     } catch (error) {
         res.status(400).send(error)
     }

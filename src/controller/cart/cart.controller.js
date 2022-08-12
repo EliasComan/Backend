@@ -25,12 +25,12 @@ cartRouter.post('/', async (req, res, next ) => {
         const qnty= req.body.qnty
         const {cart}= await userModel.findById(req.user.id)
         const product = await productsModel.findById(idProduct)
-        const {id, name,thumbnail} = product
+        const {id, name,image} = product
         await userModel.updateMany({_id:req.user.id},{cart:[...cart,{
             _id:id,
             name:name,
-            img: thumbnail,
-            qnty:qnty
+            qnty:qnty,
+            image: image
         }]})
         .then(() => res.json({msg:'Done'}))
         

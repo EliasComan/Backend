@@ -51,7 +51,6 @@ adminController.post('/addcollection', upload.single('collectionImage'), async (
         let user = true
             try {
                 let upload = false;
-                console.log(req.file)
                 let newCollection = {
                     name: req.body.collectionName,
                     description: req.body.collectionDescription,

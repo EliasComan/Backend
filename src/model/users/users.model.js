@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
         id: String,
         name: String,
         qnty: Number,
-        img: String,
+        image: String,
         price:Number
     }]
 })

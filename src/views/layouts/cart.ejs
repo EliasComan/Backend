@@ -18,9 +18,10 @@
     <% if(cart){ %>
     <div class="h-screen flex">
         <div class="w-4/6 overflow-y-scroll  m-4">
+            <% console.log(cart) %> 
             <% cart.forEach( product => { %>
             <div class="w-full flex border mt-2 px-2 shadow-md rounded-xl">
-                <img class="w-96 mx-4 my-2" src=<%= product.img %> alt="" srcset="">
+                <img class="w-96 mx-4 my-2" src=<%= product.image %> alt="" srcset="">
                 <div class=" mt-4  w-5/6">
                     <div class="flex justify-around w-5/6">
 

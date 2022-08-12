@@ -1,85 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/daisyui@2.15.0/dist/full.css" rel="stylesheet" type="text/css" />
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="icon" type="image/jpg"
-          href="https://res.cloudinary.com/hdsqazxtw/image/upload/v1558445735/apple-icon-60x60_lzyndx.png" />
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
-        <title>E-Commerce</title>
-      </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.15.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/jpg"
+        href="https://res.cloudinary.com/hdsqazxtw/image/upload/v1558445735/apple-icon-60x60_lzyndx.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+    <title>E-Commerce</title>
+</head>
+
 <body>
     <%- include('./navbar.ejs') -%>
     <% if(cart){ %>
-        <div class="h-screen flex">
-            <div class="w-4/6 overflow-y-scroll  m-4">
-                <% cart.forEach( product => { %>
-                    <div class="w-full flex border mt-2 px-2 shadow-md rounded-xl">
-                        <img class="w-96 mx-4 my-2" src=<%= product.img %>  alt="" srcset="">
-                        <div class=" mt-4  w-5/6">
-                            <div class="flex justify-around w-5/6">
+    <div class="h-screen flex">
+        <div class="w-4/6 overflow-y-scroll  m-4">
+            <% cart.forEach( product => { %>
+            <div class="w-full flex border mt-2 px-2 shadow-md rounded-xl">
+                <img class="w-96 mx-4 my-2" src=<%= product.img %> alt="" srcset="">
+                <div class=" mt-4  w-5/6">
+                    <div class="flex justify-around w-5/6">
 
-                                <h2 class="text-4xl mx-4 font-semibold"><%= product.name %> </h2>
-                                <h2 class="text-3xl">Cantidad: <%= product.qnty %> </h2>
-                                <button type="button" onclick="handleDelete()" class="text-xl text-gray-800">X</button>
-                            </div>
-                            <div class=" flex h-4/6 items-end justify-items-end">
-                                <h2 class="text-4xl font-normal text-green-600 mt-12 mx-24"> $400 </h2>
-                            </div>
-                        </div>
-                        
-
+                        <h2 class="text-4xl mx-4 font-semibold"><%= product.name %> </h2>
+                        <h2 class="text-3xl">Cantidad: <%= product.qnty %> </h2>
+                        <button name="buttonDel" id="<%= product._id %>" type="button" onclick="handleDelete(this)"
+                            class="text-xl text-gray-800">X</button>
                     </div>
-                    <div class="mt-12 mx-2 bg-gray-200">
-                        <h2></h2>
+                    <div class=" flex h-4/6 items-end justify-items-end">
+                        <h2 class="text-4xl font-normal text-green-600 mt-12 mx-24"> $400 </h2>
                     </div>
-                    <% }) %>  
-            </div>
-            <div class="w-1 bg-gray-200 h-screen"></div>
-            <div class="flex items-center justify-center w-2/6 h-5/6">
-
-                <div class="flex flex-col  bg-gray-100 h-3/6 w-full m-10  border rounded-xl shadow-lg place-content-between">
-                    <div class="flex flex-col place-content-evenly h-full">
-                        <h2 class="text-4xl font-bold text-center" >Resumen de orden</h2>
-                        <div>
-                                <div class="flex w-4/6 justify-between items-center mx-4 my-2">
-                                <h2 class="text-2xl font-semibold"> Total : </h2>
-                                <h2 class="text-2xl font-semibold">$2000</h2>
-                            </div>
-                            <div class="h-1 bg-gray-200 w-5/6"></div>
-    
-                        </div>
-                        <div>
-    
-                            <div class="flex w-4/6 justify-between items-center mx-4 my-2">
-                                <h2 class="text-2xl font-semibold"> Cantidad items : </h2>
-                                <h2 class="text-2xl font-semibold">12</h2>
-                            </div>
-                            <div class="h-1 bg-gray-200 w-5/6"></div>
-                        </div>
-                    </div>
-    
-                        <button class="h-16 btn btn-secondary w-full">Crear orden</button>
-    
                 </div>
-            </div>
 
-            
+
+            </div>
+            <div class="mt-12 mx-2 bg-gray-200">
+                <h2></h2>
+            </div>
+            <% }) %>
         </div>
-         <% }else {  %>
-            <div class="h-screen flex items-center justify-center">
+        <div class="w-1 bg-gray-200 h-screen"></div>
+        <div class="flex items-center justify-center w-2/6 h-5/6">
 
-                <h1 class="text-3xl font-bold">Aun no hay nada aqui </h1>
+            <div
+                class="flex flex-col  bg-gray-100 h-3/6 w-full m-10  border rounded-xl shadow-lg place-content-between">
+                <div class="flex flex-col place-content-evenly h-full">
+                    <h2 class="text-4xl font-bold text-center">Resumen de orden</h2>
+                    <div>
+                        <div class="flex w-4/6 justify-between items-center mx-4 my-2">
+                            <h2 class="text-2xl font-semibold"> Total : </h2>
+                            <h2 class="text-2xl font-semibold">$2000</h2>
+                        </div>
+                        <div class="h-1 bg-gray-200 w-5/6"></div>
+
+                    </div>
+                    <div>
+
+                        <div class="flex w-4/6 justify-between items-center mx-4 my-2">
+                            <h2 class="text-2xl font-semibold"> Cantidad items : </h2>
+                            <h2 class="text-2xl font-semibold">12</h2>
+                        </div>
+                        <div class="h-1 bg-gray-200 w-5/6"></div>
+                    </div>
+                </div>
+
+                <button class="h-16 btn btn-secondary w-full">Crear orden</button>
+
             </div>
-            <% } %>   
+        </div>
+
+
+    </div>
+    <% }else {  %>
+    <div class="h-screen flex items-center justify-center">
+
+        <h1 class="text-3xl font-bold">Aun no hay nada aqui </h1>
+    </div>
+    <% } %>
     <%- include('./footer.ejs') %>
 </body>
 <script>
-    async function handleDelete(){
-        console.log('delete')
+    async function handleDelete(arg) {
+        const id = arg.id
+        fetch('/cart/delete', {
+            method :'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `id=${id}`
+        }).then (res=>
+        res.json().then(() =>   location.reload())
+        )
+    
     }
 </script>
+
 </html>

@@ -1,14 +1,14 @@
 const express = require("express");
 const path = require("path");
-const productsModel = require("../../model/collections/colecctions.dao");
+const productsModel = require("../../model/collections/collections.model");
 
 const routerproducts = express.Router();
 
 routerproducts.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    await productsModel.getByid(id.slice(1)).then((response) => {
-      const product = response[0];
+    await productsModel.findById(id.slice(1)).then((response) => {
+      const product = response;
       if (req.isAuthenticated()) {
         res.render(path.resolve("./src/views/layouts/itemDetail.ejs"), {
           product,

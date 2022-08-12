@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 const userModel = require('../../model/users/users.model')
-const productsModel = require('../../model/collections/colecctions.dao')
+const productsModel = require('../../model/collections/collections.model')
 
 
 const cartRouter = express.Router()
@@ -24,8 +24,8 @@ cartRouter.post('/', async (req, res, next ) => {
         const idProduct = req.body.id
         const qnty= req.body.qnty
         const {cart}= await userModel.findById(req.user.id)
-        const product = await productsModel.getByid(idProduct)
-        const {id, name,thumbnail} = product[0]
+        const product = await productsModel.findById(idProduct)
+        const {id, name,thumbnail} = product
         await userModel.updateMany({_id:req.user.id},{cart:[...cart,{
             _id:id,
             name:name,
@@ -41,6 +41,26 @@ cartRouter.post('/', async (req, res, next ) => {
     res.json('No tienes autorizacion para hacer esto')
     
    }
+})
+
+cartRouter.post('/delete', async (req, res, next) => {
+    if (req.isAuthenticated()) {
+        try {
+            const {id } = req.body
+            const {cart}= await userModel.findById(req.user.id)
+            const newCart = cart.filter(product => ( product._id != id))
+            await userModel.updateMany({_id:req.user.id},{cart:newCart})
+            .then(() => {
+                res.json('donde');
+            })
+            
+        } catch (error) {
+            res.status(400).send(error)
+        }
+       } else {
+        res.json('No tienes autorizacion para hacer esto')
+        
+       }
 })
 
 

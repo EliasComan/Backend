@@ -5,37 +5,16 @@ mongoose.connect(config.atlas.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
+const collectionsScheman = new mongoose.Schema({
+        name:{type:String,require:true},
+        description:{type:String, require:true},
+        thumbnail:{type:String, require:true},
+        coverPage:{type:String, require:true},
+        price:{type:Number, require: true}
+    })
 
 
-class collectionsModel {
-    constructor(colection,schema){
-        this.colection = mongoose.model(colection,schema);
-    }
+       
+ 
 
-    async save(object) {
-      return await this.colection.insertMany(object)
-    }
-    async getByid ( id){ 
-        return await this.colection.find({_id:id})
-     
-     }
-    async getAll () {
-       return  await this.colection.find()
-        
-         
-        }     
-    async deleteById(id){
-         return await this.colection.deleteOne({_id:id})
-         
-     }
-    deleteAll () {
-     
-     }
-
-    async closeConecction (){
-        return await mongoose.disconnect()
-    
-    }
-}
-
-module.exports = collectionsModel
+module.exports = mongoose.model('collectionsEcommerce',collectionsScheman);

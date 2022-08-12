@@ -1,6 +1,6 @@
 const adminController = require("./src/controller/admin/admin.controller.js");
 const bodyParser = require("body-parser");
-const collections = require("./src/model/collections/colecctions.dao.js");
+const productsModel = require("./src/model/collections/collections.model");
 const connectMongo = require("connect-mongo");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
@@ -73,7 +73,7 @@ app.use('/cart',cartController)
 app.get("/", (req, res) => {
   let user = false;
   req.isAuthenticated() ? (user = true) : (user = false);
-  collections.getAll().then((response) => {
+  productsModel.find().then((response) => {
     const collectionsDatabase = response;
     res.render(path.resolve("./src/views/main.ejs"), {  user, collectionsDatabase });
   });

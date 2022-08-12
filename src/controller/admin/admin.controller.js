@@ -46,26 +46,20 @@ adminController.get('/addcollection', (req, res) => {
     })
 })
 
-adminController.post('/addcollection', upload.fields([{
-    name: 'collectionThumbnail',
-    maxCount: 2
-}, {
-    name: 'collectionCoverPage',
-    maxCount: 2
-}]), (req, res, next) => {
+adminController.post('/addcollection', upload.single('collectionImage'), async (req, res, next) => {
     if (req.isAuthenticated()) {
         let user = true
-        if (req.files) {
             try {
                 let upload = false;
+                console.log(req.file)
                 let newCollection = {
                     name: req.body.collectionName,
                     description: req.body.collectionDescription,
-                    thumbnail: 'http://localhost:8080/uploads/images/' + req.files.collectionThumbnail[0]['filename'],
-                    coverPage: 'http://localhost:8080/uploads/images/' + req.files.collectionCoverPage[0]['filename'],
+                    image: 'http://localhost:8080/uploads/images/' + req.file.filename,
+                    price:req.body.collectionPrice,
 
                 }
-                productsModel.create(newCollection)
+                productsModel.insertMany(newCollection)
                     .finally(() => {
                         upload = true;
                         res.render(path.resolve('./src/views/admin.ejs'), {
@@ -78,17 +72,29 @@ adminController.post('/addcollection', upload.fields([{
                     })
             } catch (error) {
                 res.status(400).json({
-                    msg: error
+                    msg: 'error'
                 })
             }
-        } else {
-            res.redirect('/')
-        }
     } else {
         res.redirect('/')
 
     }
 })
+adminController.post('/delete', async (req, res, next) => {
+    if (req.isAuthenticated()) {
+        try {
+            const { id }  = req.body
+          await productsModel.deleteOne({id:id})
+            res.json({msg:'done'})
+           } catch (error) {
+            res.status(400).send(error)
+        }
+    } else {
+        res.send('No tienes autorizacion para hacer esto')
+    }
+})
+
+
 
 
 module.exports = adminController

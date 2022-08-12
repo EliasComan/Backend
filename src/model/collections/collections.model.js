@@ -6,11 +6,10 @@ mongoose.connect(config.atlas.url, {
     useUnifiedTopology: true,
 })
 const collectionsScheman = new mongoose.Schema({
-        name:{type:String,require:true},
-        description:{type:String, require:true},
-        thumbnail:{type:String, require:true},
-        coverPage:{type:String, require:true},
-        price:{type:Number, require: true}
+        name:String,
+        description:String,
+        image:String,
+        price:Number
     })
 
 

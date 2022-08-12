@@ -18,32 +18,16 @@
   </strong>
 </h2>
 <section class="grid grid-cols-4 my-5 justify-items-center p-4">
-  <% collectionsDatabase.forEach( function(collection){ %> 
-    <a href="/products/:<%-collection._id  %> ">
-      <div
-        class="flex shadow hover:shadow-xl w-full hover:shadow-[#9921e8]/20 rounded-xl border-solid m-5 border-black flex-col rounded-xl mt-6"
-      >
-        <img
-          class="h-72 rounded w-full"
-          src= "<%=collection.coverPage%>" 
-          alt="Nombre colecion"
-        />
-
-        <div class="flex flex-col p-3 justify-around items-center">
-          <img
-            class=" border-2 shadow rounded-full justify-self-center w-16"
-            src= "<%=collection.thumbnail%>" 
-            alt="Nombre collecion"
-          />
-          <h2 class="text-2xl"> <strong> <%=collection.name%> </strong></h2>
+  <% collectionsDatabase.forEach( function(product){ %> 
+    <a href="/products/:<%-product._id  %> ">
+      <div class="card w-96 bg-base-100 shadow-xl">
+        <figure><img class="w-96" src="<%= product.image %> " alt="Shoes" /></figure>
+        <div class="card-body h-96">
+          <h2 class="card-title"><%= product.name %> </h2>
+          <p class="h-10 text-ellipsis"><%= product.description %> </p>
+          <div class="card-actions justify-end">
+          </div>
         </div>
-
-        <div class="flex px-5 pb-2 items-center px-2 ">
-          <p class="text-gray-400 text-xl  overflow-hidden m-5 p-2">
-            <%=  collection.description %> 
-          </p>
-        </div>
-
       </div>
     </a>
   <% }); %> 

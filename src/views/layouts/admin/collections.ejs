@@ -10,15 +10,18 @@
             </button>
         </a>
     </div>
-    <% collections.forEach( function(collection){ %> 
+    <% if(collections[0] === undefined) {%>
+        <div class=" flex h-screen w-full items-center justify-center"><h1 class="text-3xl font-bold text-center">Aun no hay colecciones</h1></div>
+        <% } %>  
+    <% collections.forEach( function(product){ %> 
         <div class=" flex flex-col text-2xl font-bold  m-10 mt-10">
                 <div href='#' class="flex flex-row justify-between items-center  p-10 shadow flex-row border-b border-solid">
-                   <a href="/coleccions/:<%-collection._id%>" class="flex justify-between w-4/5" >
-                        <img src="<%=collection.thumbnail%>" class="h-14 w-14" alt="">
-                        <h1><%=collection.name%> </h1>
-                        <h2><%=  collection.description %> </h2>
+                   <a href="/products/:<%-product._id%>" class="flex justify-between w-4/5" >
+                        <img src="<%=product.thumbnail%>" class="h-14 w-14" alt="">
+                        <h1><%=product.name%> </h1>
+                        <h2><%=  product.description %> </h2>
                     </a>
-                     <button onclick= "deleteCollection(<%=collection._id%>)" class="btn hover:text-white shadow-red-600 btn-outline btn-error">Delete</button> 
+                     <button id="<%= product.id %> " onclick= "deleteProduct(this)" class="btn hover:text-white shadow-red-600 btn-outline btn-error">Delete</button> 
                 </div>
         </div>
     <% }); %> 

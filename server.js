@@ -13,11 +13,11 @@ const cors = require("cors");
 const usersController = require("./src/controller/users/users.controller.js");
 const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
- require('./src/middlewears/passport')
 const {handleSockets} = require('./src/middlewears/sockets')
 const handlebars = require('express-handlebars')
 const flash = require('connect-flash')
 const cartController = require('./src/controller/cart/cart.controller')
+require('./src/middlewears/passport')
 
 /*-----------------------MIDDLEWEARS -----------------*/
 dotenv.config();

@@ -8,28 +8,27 @@
               </div>
         <% }; %> 
         <div class="flex font-bold items-center text-2xl flex-row font-bold w-full justify-around mt-10 px-2 w-full ">
-            <h1 class="font-bold text-3xl">Create a collecton</h1>
-            <button onclick="discard()" class="btn btn-outline btn-error w-32 h-16 hover:text-white  shadow shadow-red-600"> X Discard</button>
+            <h1 class="font-bold text-3xl">Crear coleccion</h1>
+            <button onclick="discard()" class="btn btn-outline btn-error w-32 h-16 hover:text-white  shadow shadow-red-600"> Descartar</button>
         </div>
         <form enctype="multipart/form-data" class='flex ml-80 flex-col  hover:shadow-lg hover:shadow-[#9921e8]/20 mt-10 pt-10 max-w-7xl border shadow rounded p-5 pb-24' action="/admin/addcollection" method="post">
-            <label for="collectionName" class="label font-semibold text-lg"> Collection name.</label>
+            <label for="collectionName" class="label font-semibold text-lg"> Nombre.</label>
             <input id='collection' type="text"  class="input  focus:shadow-xl focus:shadow-[#9921e8]/30 input-bordered h-16 w-full border shadow" name="collectionName" required>
+            <label for="collectionPrice" class="label font-semibold text-lg"> Precio.</label>
+            <input id='price' type="Number"  class="input  focus:shadow-xl focus:shadow-[#9921e8]/30 input-bordered h-16 w-full border shadow" name="collectionPrice" required>
             <div class="flex flex-col mt-12">
-                <label for="collectionDescription" class="label font-semibold text-lg"> Description.</label>
+                <label for="collectionDescription" class="label font-semibold text-lg"> Descripcion.</label>
                 <textarea id="description" name='collectionDescription' class=" focus:shadow-xl focus:shadow-[#9921e8]/30 textarea textarea-bordered h-32 border shadow" placeholder="Type here..." required></textarea>
             </div>
             <div class="mt-16 flex flex-row justify-around">
+             
                 <div class="flex flex-col">
-                    <label for="collectionImage" class="font-semibold text-xl"> collection cover page.</label>
-                    <input id="coverpage" class=" mt-5  focus:shadow-xl focus:shadow-[#9921e8]/30 rounded border border-gray-300  rounded shadow-lg h-10 max-w-xl text-lg font-semibold" type="file"  name ='collectionCoverPage' required>
-                </div>
-                <div class="flex flex-col">
-                    <label for="thumbnail" class="font-semibold text-xl"> collection thumbnail.</label>
-                    <input id="thumbnail" class=" mt-5  focus:shadow-xl focus:shadow-[#9921e8]/30 rounded border border-gray-300  rounded shadow-lg h-10 max-w-xl text-lg font-semibold" type="file"  name='collectionThumbnail' required>
+                    <label for="image" class="font-semibold text-xl">Imagen.</label>
+                    <input id="image" class=" mt-5  focus:shadow-xl focus:shadow-[#9921e8]/30 rounded border border-gray-300  rounded shadow-lg h-10 max-w-xl text-lg font-semibold" type="file"  name='collectionImage' required>
                 </div>
             </div>
             <div class="flex items-center justify-start mt-16">
-                <button  class="btn btn-info btn-lg">Public collection.</button>
+                <button  class="btn btn-info btn-lg">Publicar.</button>
             </div>
                 
         </form>

@@ -17,9 +17,8 @@
         <div class=" flex flex-col text-2xl font-bold  m-10 mt-10">
                 <div href='#' class="flex flex-row justify-between items-center  p-10 shadow flex-row border-b border-solid">
                    <a href="/products/:<%-product._id%>" class="flex justify-between w-4/5" >
-                        <img src="<%=product.thumbnail%>" class="h-14 w-14" alt="">
+                        <img src="<%=product.image%>" class="h-24 w-24" alt="">
                         <h1><%=product.name%> </h1>
-                        <h2><%=  product.description %> </h2>
                     </a>
                      <button id="<%= product.id %> " onclick= "deleteProduct(this)" class="btn hover:text-white shadow-red-600 btn-outline btn-error">Delete</button> 
                 </div>

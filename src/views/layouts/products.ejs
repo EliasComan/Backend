@@ -19,7 +19,7 @@
 </h2>
 <section class="grid grid-cols-4 my-5 justify-items-center p-4">
   <% collectionsDatabase.forEach( function(product){ %> 
-    <a href="/products/:<%-product._id  %> ">
+    <a class="my-12" href="/products/:<%-product._id  %> ">
       <div class="card w-96 bg-base-100 shadow-xl">
         <figure><img class="w-96" src="<%= product.image %> " alt="Shoes" /></figure>
         <div class="card-body h-96">

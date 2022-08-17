@@ -73,7 +73,7 @@ passport.use(
     },
     async (req,email, password, done) => {
       try {
-        await users.findOne({email:email}).then(async (user) => {
+       const user = await users.findOne({email:email})
           if (user) {
             return done(null, false, req.flash('singUpMessage', "Usuario ya registrado" ));
           } else {
@@ -82,6 +82,7 @@ passport.use(
             await users
               .create({ email:email, password: hash })
               .then(async (response) => {
+                console.log(response.id)
                 await transporter.sendMail({
                   from: "NodeJSAPP <noreply@example.com>",
                   to: `"Dear Developer!👩‍💻👨‍💻" <${email}>`,
@@ -102,10 +103,10 @@ passport.use(
                     expiresIn: "24h",
                   }
                 );
+              
                 return done(null, { token: accessToken, email, id:response.id },req.flash('logInMessage',"Por favor inicia sesion" ));
               });
           }
-        });
       } catch (error) {
         return done(null, { msg: "Error de conexion" });
       }
